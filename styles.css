@@ -846,3 +846,109 @@ ul { list-style: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+.reviews-wrapper {
+  position: relative;
+  max-width: 680px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.reviews-track {
+  display: flex;
+  transition: transform .45s cubic-bezier(.4,0,.2,1);
+  will-change: transform;
+}
+
+/* Una sola card visible, todas del mismo ancho */
+.res-card {
+  flex: 0 0 100%;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--gray-300);
+  box-shadow: var(--shadow-md);
+  padding: 2rem 2.25rem;
+  text-align: left;
+  transition: box-shadow var(--t), transform var(--t);
+}
+.res-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.stars { color: var(--yellow-d); font-size: 1.1rem; letter-spacing: .1em; margin-bottom: 1rem; }
+
+.res-text {
+  font-size: .95rem;
+  color: var(--gray-800);
+  line-height: 1.75;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.res-user {
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+}
+.res-avatar {
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple-d), var(--blue-d));
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.res-name { font-size: .9rem; font-weight: 700; color: var(--black); }
+.res-role { font-size: .8rem; color: var(--gray-500); }
+
+/* Controles del carrusel */
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.75rem;
+}
+.carousel-btn {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1.5px solid var(--gray-300);
+  color: var(--gray-800);
+  font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all var(--t);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+.carousel-btn:hover:not(:disabled) {
+  background: var(--purple-d);
+  border-color: var(--purple-d);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(124,58,237,.35);
+  transform: scale(1.08);
+}
+.carousel-btn:disabled { opacity: .35; cursor: default; }
+
+.carousel-dots {
+  display: flex;
+  gap: .45rem;
+  align-items: center;
+}
+.c-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--gray-300);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all var(--t);
+}
+.c-dot.active {
+  background: var(--purple-d);
+  width: 22px;
+  border-radius: var(--r-pill);
+}
