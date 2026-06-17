@@ -165,3 +165,35 @@ document.addEventListener('mousemove', e => {
     blob.style.transform = `translate(${dx * factor}px, ${dy * factor}px)`;
   });
 });
+(function () {
+  const track  = document.getElementById('reviewsTrack');
+  const dots   = document.querySelectorAll('#reviewDots .c-dot');
+  const btnPrev = document.getElementById('reviewPrev');
+  const btnNext = document.getElementById('reviewNext');
+  if (!track) return;
+
+  let current = 0;
+  const total = track.children.length;
+
+  function goTo(idx) {
+    current = Math.max(0, Math.min(idx, total - 1));
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    btnPrev.disabled = current === 0;
+    btnNext.disabled = current === total - 1;
+  }
+
+  btnPrev.addEventListener('click', () => goTo(current - 1));
+  btnNext.addEventListener('click', () => goTo(current + 1));
+  dots.forEach(dot => dot.addEventListener('click', () => goTo(+dot.dataset.idx)));
+
+  // Swipe táctil
+  let startX = 0;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend',   e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+  });
+
+  goTo(0);
+})();
