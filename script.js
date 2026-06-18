@@ -164,6 +164,8 @@ document.addEventListener('mousemove', e => {
     const factor = (i + 1) * 12;
     blob.style.transform = `translate(${dx * factor}px, ${dy * factor}px)`;
   });
+
+   
 });
 (function () {
   const track  = document.getElementById('reviewsTrack');
