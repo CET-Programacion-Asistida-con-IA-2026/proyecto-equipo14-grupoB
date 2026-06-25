@@ -1032,3 +1032,29 @@ ul { list-style: none; }
   margin-bottom: 2.5rem;
 }
 
+/* ─────────────────────────────────────────
+   FAQ
+───────────────────────────────────────── */
+.faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; }
+.faq-item { border-bottom: 1.5px solid var(--gray-100); }
+.faq-item:first-child { border-top: 1.5px solid var(--gray-100); }
+
+.faq-q {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  padding: 1.25rem 0; text-align: left;
+  font-size: 1.2rem; font-weight: 600; color: var(--gray-800);
+  transition: color var(--t);
+}
+.faq-q:hover { color: var(--purple-d); }
+.faq-icon {
+  font-size: 1.4rem; font-weight: 300; color: var(--gray-300);
+  flex-shrink: 0; transition: transform var(--t);
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); color: var(--purple-d); }
+
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height .35s ease, padding .35s ease;
+}
+.faq-item.open .faq-a { max-height: 220px; padding-bottom: 1.25rem; }
+.faq-a p { font-size: .9rem; color: var(--gray-500); line-height: 1.7; }
