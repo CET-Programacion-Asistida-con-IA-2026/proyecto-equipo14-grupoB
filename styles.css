@@ -698,6 +698,10 @@ ul { list-style: none; }
   font-weight: 800;
   flex-shrink: 0;
 }
+.portal-ico img {
+  width: 44px; height: 44px;
+  border-radius: var(--r-sm);
+}
 .portal-info h4 { font-size: .92rem; font-weight: 700; color: var(--navy); margin-bottom: .3rem; }
 .portal-info p  { font-size: .82rem; color: var(--gray); line-height: 1.5; }
 
