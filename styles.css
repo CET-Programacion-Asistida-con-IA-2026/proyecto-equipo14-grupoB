@@ -301,7 +301,7 @@ ul { list-style: none; }
 
 .hero-sub {
   font-size: 1.025rem;
-  color: var(--gray);
+  color: var(--alice);
   max-width: 440px;
   margin-bottom: 2rem;
 }
