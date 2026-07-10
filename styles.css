@@ -227,7 +227,12 @@ ul { list-style: none; }
   position: relative;
   overflow: hidden;
   padding: 8.5rem 2rem 5rem;
-  background: var(--white);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(87, 86, 86, 0.35)),
+  url(img/fondo.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 /* aurora blobs */
