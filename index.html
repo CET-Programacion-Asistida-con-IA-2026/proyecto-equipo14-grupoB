@@ -17,7 +17,7 @@
       </a>
       <nav class="nav-links">
         <a href="#simulador">¿Cómo funciona?</a>
-        <a href="#analizador">Simulador</a>
+        <a href="#cvx-section">Simulador</a>
         <a href="#recursos">Recursos</a>
         <a href="#portales">Portales</a>
         <a href="#comunidad">Comunidad</a>
@@ -145,7 +145,7 @@
       </div>
     </section>
 
-    <!-- ══ SECCIÓN 1 — SIMULADOR ══ -->
+    <!-- ══ SECCIÓN 1 — ¿Cómo funciona? ══ -->
     <section class="section" id="simulador">
       <div class="container">
         <div class="section-head">
@@ -234,8 +234,287 @@
         </div>
       </div>
     </section>
+    <!-- ══ SECCIÓN 2 — SIMULADOR ══ -->
+    <!-- ACÁ ARRANCA EL HTML DELSIMULADOR -->
+    <section class="cvx-root" id="cvx-section" aria-label="Analizador de CV">
 
-    <!-- ══ SECCIÓN 2 — RECURSOS ══ -->
+  <!-- aurora decorativa -->
+  <div class="cvx-aurora" aria-hidden="true">
+    <div class="cvx-blob cvx-b1"></div>
+    <div class="cvx-blob cvx-b2"></div>
+    <div class="cvx-blob cvx-b3"></div>
+  </div>
+
+  <div class="cvx-wrap">
+
+    <!-- ── HEADER ── -->
+    <header class="cvx-header">
+      <div class="cvx-eyebrow">✦ Análisis de CV</div>
+      <h2 class="cvx-title">Revisá tu CV <span>en detalle</span></h2>
+      <p class="cvx-subtitle">
+        Subí tu currículum y obtenés un análisis basado únicamente en lo que contiene tu documento,
+        sin inventar resultados.
+      </p>
+    </header>
+
+    <!-- ── STEPPER ── -->
+    <nav class="cvx-stepper" aria-label="Progreso del análisis">
+      <div class="cvx-step is-active" id="cvx-step-1">
+        <div class="cvx-step-n">1</div><span>Subir</span>
+      </div>
+      <span class="cvx-step-sep" aria-hidden="true">›</span>
+      <div class="cvx-step" id="cvx-step-2">
+        <div class="cvx-step-n">2</div><span>Leer</span>
+      </div>
+      <span class="cvx-step-sep" aria-hidden="true">›</span>
+      <div class="cvx-step" id="cvx-step-3">
+        <div class="cvx-step-n">3</div><span>Confirmar</span>
+      </div>
+      <span class="cvx-step-sep" aria-hidden="true">›</span>
+      <div class="cvx-step" id="cvx-step-4">
+        <div class="cvx-step-n">4</div><span>Resultados</span>
+      </div>
+    </nav>
+
+    <!-- ── CARD ── -->
+    <div class="cvx-card">
+
+      <!-- SVG gradientes globales -->
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+          <linearGradient id="cvx-spin-grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%"   stop-color="#3E5BA3"/>
+            <stop offset="100%" stop-color="#75CBD1"/>
+          </linearGradient>
+          <linearGradient id="cvx-ring-grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%"   stop-color="#75CBD1"/>
+            <stop offset="45%"  stop-color="#3E5BA3"/>
+            <stop offset="100%" stop-color="#F2D2FF"/>
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <!-- ══ PANEL 1 — UPLOAD ══ -->
+      <div class="cvx-panel is-active" id="cvx-p-upload">
+        <div class="cvx-panel-body">
+
+          <!-- dropzone -->
+          <div class="cvx-drop" id="cvx-drop"
+               role="button" tabindex="0"
+               aria-label="Arrastrá o seleccioná tu CV">
+            <span class="cvx-drop-icon">📄</span>
+            <p class="cvx-drop-title">Arrastrá tu CV acá</p>
+            <p class="cvx-drop-sub">o hacé click para seleccionarlo</p>
+
+            <div class="cvx-fmts" aria-label="Formatos aceptados">
+              <span class="cvx-fmt">PDF</span>
+              <span class="cvx-fmt">DOCX</span>
+              <span class="cvx-fmt no" title="No compatible">JPG</span>
+              <span class="cvx-fmt no" title="No compatible">PNG</span>
+              <span class="cvx-fmt no" title="No compatible">PDF escaneado</span>
+            </div>
+
+            <button class="cvx-btn-pick" id="cvx-btn-pick" type="button">
+              ✦ Seleccionar archivo
+            </button>
+            <p class="cvx-drop-note">Solo PDF con texto digital y DOCX · Máx. 10 MB</p>
+
+            <input type="file" id="cvx-file-input" accept=".pdf,.docx" aria-hidden="true">
+          </div>
+
+          <!-- preview del archivo seleccionado -->
+          <div class="cvx-preview" id="cvx-preview" role="status" aria-live="polite">
+            <span class="cvx-preview-icon" id="cvx-preview-icon">📄</span>
+            <div class="cvx-preview-info">
+              <div class="cvx-preview-name" id="cvx-preview-name"></div>
+              <div class="cvx-preview-meta" id="cvx-preview-meta"></div>
+            </div>
+            <button class="cvx-btn-remove" id="cvx-btn-remove"
+                    aria-label="Quitar archivo seleccionado" type="button">✕</button>
+          </div>
+
+          <!-- error -->
+          <div class="cvx-upload-err" id="cvx-upload-err" role="alert">
+            <span class="cvx-err-icon">⚠</span>
+            <span id="cvx-upload-err-txt"></span>
+          </div>
+
+          <!-- botón analizar -->
+          <button class="cvx-btn-start" id="cvx-btn-start" type="button">
+            Analizar mi CV →
+          </button>
+
+        </div><!-- /panel-body -->
+      </div><!-- /p-upload -->
+
+      <!-- ══ PANEL 2 — LOADING ══ -->
+      <div class="cvx-panel" id="cvx-p-loading">
+        <div class="cvx-loading-inner">
+
+          <div class="cvx-spin" aria-hidden="true">
+            <svg viewBox="0 0 68 68" fill="none">
+              <circle cx="34" cy="34" r="26" stroke="#DAE8FB" stroke-width="6"/>
+              <circle cx="34" cy="34" r="26"
+                stroke="url(#cvx-spin-grad)" stroke-width="6"
+                stroke-linecap="round"
+                stroke-dasharray="163" stroke-dashoffset="42"
+                transform="rotate(-90 34 34)"/>
+            </svg>
+          </div>
+
+          <p id="cvx-load-msg">Leyendo el documento…</p>
+          <p class="cvx-load-hint">Esto puede tardar unos segundos</p>
+
+          <div class="cvx-pbar-wrap">
+            <div class="cvx-pbar">
+              <div id="cvx-load-bar"></div>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /p-loading -->
+
+      <!-- ══ PANEL 3 — FOTO ══ -->
+      <!--
+        Este panel solo aparece SI el CV tiene foto (S.hasPhoto === true).
+        Si no hay foto, el JS lo salta directamente al panel confirm.
+        Imágenes: /img/1.jpg = ejemplo MAL  |  /img/2.jpg = ejemplo BIEN
+      -->
+      <div class="cvx-panel" id="cvx-p-foto">
+        <div class="cvx-foto-inner">
+
+          <div class="cvx-foto-header">
+            <h3>Detectamos una foto en tu CV</h3>
+            <p>
+              Incluir foto en el currículum es una decisión personal.
+              Acá te mostramos qué tipo de foto funciona mejor y cuándo conviene usarla.
+            </p>
+          </div>
+
+          <!-- comparación visual -->
+          <div class="cvx-foto-compare">
+
+            <!-- NO recomendada -->
+            <div class="cvx-foto-card no">
+              <div class="cvx-foto-label">
+                <span>❌</span> Evitar
+              </div>
+              <div class="cvx-foto-img-wrap">
+                <!--
+                  IMAGEN 1 — foto de ejemplo "mala"
+                  Reemplazar src por la ruta real. Ej: /img/1.jpg
+                -->
+                <img src="1.jpg" alt="Ejemplo de foto no recomendada para CV" loading="lazy">
+              </div>
+              <div class="cvx-foto-tips">
+                <div class="cvx-foto-tip"><span class="cvx-foto-tip-icon">❌</span> Fondo informal o cargado</div>
+                <div class="cvx-foto-tip"><span class="cvx-foto-tip-icon">❌</span> Ropa casual o de fiesta</div>
+                <div class="cvx-foto-tip"><span class="cvx-foto-tip-icon">❌</span> Selfie o recorte de grupo</div>
+                <div class="cvx-foto-tip"><span class="cvx-foto-tip-icon">❌</span> Mala iluminación o baja calidad</div>
+              </div>
+            </div>
+
+            <!-- SÍ recomendada -->
+            <div class="cvx-foto-card yes">
+              <div class="cvx-foto-label">
+                <span>✔</span> Recomendado
+              </div>
+              <div class="cvx-foto-img-wrap">
+                <!--
+                  IMAGEN 2 — foto de ejemplo "buena"
+                  Reemplazar src por la ruta real. Ej: /img/2.jpg
+                -->
+                <img src="2.jpg" alt="Ejemplo de foto recomendada para CV" loading="lazy">
+              </div>
+              <div class="cvx-foto-tips">
+                <div class="cvx-foto-tip"><span class="cvx-foto-tip-icon">✔</span> Fondo liso o neutro</div>
+                <div class="cvx-foto-tip"><span class="cvx-foto-tip-icon">✔</span> Ropa prolija y apropiada</div>
+                <div class="cvx-foto-tip"><span class="cvx-foto-tip-icon">✔</span> Buena iluminación, expresión natural</div>
+                <div class="cvx-foto-tip"><span class="cvx-foto-tip-icon">✔</span> Encuadre desde los hombros</div>
+              </div>
+            </div>
+
+          </div><!-- /foto-compare -->
+
+          <!-- recomendación contextual -->
+          <div class="cvx-foto-rec">
+            <strong>¿Conviene incluirla?</strong> En Argentina es una práctica común,
+            pero no es obligatoria. Para rubros creativos, atención al público o ventas
+            puede sumar. En tecnología, legales o finanzas generalmente no se espera.
+            Los sistemas ATS automáticos suelen ignorar las imágenes del documento,
+            así que no afecta la lectura automatizada.
+          </div>
+
+          <!-- acciones -->
+          <div class="cvx-foto-actions">
+            <button class="cvx-btn-ghost" id="cvx-foto-back" type="button">
+              ← Volver
+            </button>
+            <button class="cvx-btn-solid" id="cvx-foto-continue" type="button">
+              Entendido, continuar →
+            </button>
+          </div>
+
+        </div><!-- /foto-inner -->
+      </div><!-- /p-foto -->
+
+      <!-- ══ PANEL 4 — CONFIRMAR / EDITAR ══ -->
+      <div class="cvx-panel" id="cvx-p-confirm">
+
+        <!--
+          El panel-body tiene overflow-y: auto → scrollea si el contenido es largo.
+          Las acciones (botones) están FUERA del panel-body para quedar siempre visibles.
+        -->
+        <div class="cvx-panel-body" id="cvx-confirm-body">
+          <!-- El JS inyecta aquí las secciones de datos:
+               cvx-sec-personal   → datos personales
+               cvx-sec-exp        → experiencia
+               cvx-sec-edu        → educación
+               cvx-sec-skills     → habilidades
+               cvx-sec-idiomas    → idiomas
+          -->
+        </div>
+
+        <!-- acciones fijas abajo (fuera del scroll) -->
+        <div class="cvx-confirm-actions">
+          <button class="cvx-btn-ghost" id="cvx-btn-back-confirm" type="button">← Volver</button>
+          <button class="cvx-btn-solid" id="cvx-btn-generate"     type="button">Generar análisis →</button>
+        </div>
+
+      </div><!-- /p-confirm -->
+
+      <!-- ══ PANEL 5 — RESULTADOS ══ -->
+      <div class="cvx-panel" id="cvx-p-results">
+
+        <div class="cvx-panel-body" id="cvx-results-body">
+          <!--
+            El JS inyecta aquí:
+            1. ring de score
+            2. grid de categorías
+            3. keywords
+            4. recomendaciones
+            5. botón restart
+          -->
+        </div>
+
+      </div><!-- /p-results -->
+
+    </div><!-- /card -->
+  </div><!-- /wrap -->
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- ══ SECCIÓN 3 — RECURSOS ══ -->
     <section class="section sec-aurora" id="recursos">
       <div class="aurora-bg" aria-hidden="true">
         <div class="ab ab1"></div>
@@ -300,7 +579,7 @@
       </div>
     </section>
 
-    <!-- ══ SECCIÓN 3 — PORTALES ══ -->
+    <!-- ══ SECCIÓN 4 — PORTALES ══ -->
     <section class="section" id="portales">
       <div class="container">
         <div class="section-head">
