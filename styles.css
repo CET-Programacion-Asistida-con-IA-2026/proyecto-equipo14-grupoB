@@ -1745,6 +1745,6 @@ ul { list-style: none; }
 .cvx-panel-body::-webkit-scrollbar-thumb { background: var(--cvx-alice); border-radius: 99px; }
 .cvx-panel-body { scrollbar-width: thin; scrollbar-color: var(--cvx-alice) transparent; }
 .logo-img {
-  height: 75px;
+  height: 203px;
   width: auto;
 }
