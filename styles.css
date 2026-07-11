@@ -1067,9 +1067,68 @@ ul { list-style: none; }
 }
 .faq-item.open .faq-a { max-height: 220px; padding-bottom: 1.25rem; }
 .faq-a p { font-size: .9rem; color: var(--gray-500); line-height: 1.7; }
+
+
+
+
 /* ─────────────────────────────────────────
    STYLE DEL SIMULADOR DEL ANALIZADOR DEL CV ✦
 ───────────────────────────────────────── */
+/* ── TOKENS ─────────────────────────────────────────────────── */
+:root {
+  /* paleta alice/dusk/aqua — misma que v1 */
+  --cvx-alice:    #DAE8FB;
+  --cvx-thistle:  #F2D2FF;
+  --cvx-aqua:     #75CBD1;
+  --cvx-aqua-lt:  #C8F0F2;
+  --cvx-dusk:     #3E5BA3;
+  --cvx-navy:     #0C0D45;
+  --cvx-white:    #ffffff;
+  --cvx-off:      #f7f8ff;
+  --cvx-gray:     #7a7ea8;
+  --cvx-gray-lt:  #b8bce0;
+
+  /* semánticos */
+  --cvx-green:    #16a34a;
+  --cvx-green-lt: #dcfce7;
+  --cvx-yellow:   #d97706;
+  --cvx-yellow-lt:#fef9c3;
+  --cvx-red:      #dc2626;
+  --cvx-red-lt:   #fee2e2;
+
+  /* radios */
+  --cvx-r-sm:  8px;
+  --cvx-r-md:  14px;
+  --cvx-r-lg:  22px;
+  --cvx-r-xl:  30px;
+  --cvx-pill:  100px;
+
+  /* sombras */
+  --cvx-sh-sm: 0 2px 10px rgba(12,13,69,.07);
+  --cvx-sh-md: 0 6px 28px rgba(12,13,69,.11);
+  --cvx-sh-lg: 0 14px 48px rgba(12,13,69,.16);
+
+  --cvx-t: .2s ease;
+}
+/* ── RESET MÍNIMO (solo dentro de .cvx-root) ────────────────── */
+.cvx-root *, .cvx-root *::before, .cvx-root *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.cvx-root button { cursor: pointer; font-family: inherit; }
+.cvx-root input, .cvx-root textarea, .cvx-root select { font-family: inherit; }
+
+/* ── SECCIÓN RAÍZ ────────────────────────────────────────────── */
+.cvx-root {
+  background: var(--cvx-off);
+  padding: 4rem 1.25rem 3.5rem;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: var(--cvx-navy);
+  /* ocupa la pantalla disponible sin forzar scroll en la card */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 /* ── AURORA ──────────────────────────────────────────────────── */
 .cvx-aurora { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
 .cvx-blob   {
