@@ -1744,3 +1744,7 @@ ul { list-style: none; }
 .cvx-panel-body::-webkit-scrollbar { width: 5px; }
 .cvx-panel-body::-webkit-scrollbar-thumb { background: var(--cvx-alice); border-radius: 99px; }
 .cvx-panel-body { scrollbar-width: thin; scrollbar-color: var(--cvx-alice) transparent; }
+.logo-img {
+  height: 75px;
+  width: auto;
+}
